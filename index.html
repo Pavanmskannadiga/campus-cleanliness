@@ -252,7 +252,7 @@
       <button class="tab active" data-tab="camera">📹 Live Camera</button>
       <button class="tab" data-tab="snapshots">📸 Snapshots</button>
       <button class="tab" data-tab="analytics">📊 Analytics</button>
-      <button class="tab" data-tab="heatmap">🗺 Heatmap</button>
+      <button class="tab" data-tab="heatmap">🗺️ Heatmap</button>
     </div>
     
     <div id="cameraTab" class="tab-content active">
@@ -277,9 +277,9 @@
       
       <div class="controls">
         <button id="startBtn" class="btn-start">📹 Start Camera</button>
-        <button id="stopBtn" class="btn-stop" style="display:none;">⏹ Stop</button>
+        <button id="stopBtn" class="btn-stop" style="display:none;">⏹️ Stop</button>
         <button id="detectBtn" class="btn-detect" style="display:none;">🤖 Start Detection</button>
-        <button id="stopDetectBtn" class="btn-stop-detect" style="display:none;">⏸ Pause</button>
+        <button id="stopDetectBtn" class="btn-stop-detect" style="display:none;">⏸️ Pause</button>
         <button id="snapshotBtn" class="btn-snapshot" style="display:none;">📸 Snapshot</button>
         <button id="exportBtn" class="btn-export">📥 Export</button>
       </div>
@@ -333,7 +333,7 @@
     </div>
     
     <div id="heatmapTab" class="tab-content">
-      <h3 style="margin-bottom:15px;">🗺 Campus Cleanliness Heatmap</h3>
+      <h3 style="margin-bottom:15px;">🗺️ Campus Cleanliness Heatmap</h3>
       <div class="heatmap" id="heatmapContent"></div>
     </div>
   </div>
@@ -394,7 +394,7 @@
     // Initialize trend bars
     function initTrendBars() {
       const container = document.getElementById('trendBars');
-      container.innerHTML = hourlyData.map((_, i) => <div class="trend-bar" data-hour="${i}" style="height:5px;"></div>).join('');
+      container.innerHTML = hourlyData.map((_, i) => `<div class="trend-bar" data-hour="${i}" style="height:5px;"></div>`).join('');
     }
     initTrendBars();
 
@@ -455,7 +455,7 @@
         statusBadge.style.display = 'none';
         detectionInfo.style.display = 'none';
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        showNotification('⏹ Camera stopped');
+        showNotification('⏹️ Camera stopped');
       }
     });
 
@@ -476,7 +476,7 @@
       statusBadge.style.display = 'none';
       detectionInfo.style.display = 'none';
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      showNotification('⏸ Detection paused');
+      showNotification('⏸️ Detection paused');
     });
 
     // Take Snapshot
@@ -535,7 +535,7 @@
         
         detectionInfo.style.display = 'block';
         detectionInfo.innerHTML = `
-          <h3>⚠ ${detection.type}</h3>
+          <h3>⚠️ ${detection.type}</h3>
           <p><strong>Confidence:</strong> ${confidence}% | <strong>Severity:</strong> ${detection.severity} | <strong>Time:</strong> ${new Date().toLocaleTimeString()}</p>
           <button class="btn-alert" onclick="createAlert('${detection.type}', '${confidence}')">🚨 Create Alert</button>
         `;
@@ -559,7 +559,7 @@
       
       const alertDiv = document.createElement('div');
       alertDiv.className = 'alert-item';
-      alertDiv.innerHTML = <strong>Alert #${alertCount}:</strong> ${type}<br><small>Confidence: ${confidence}% | Time: ${time}</small>;
+      alertDiv.innerHTML = `<strong>Alert #${alertCount}:</strong> ${type}<br><small>Confidence: ${confidence}% | Time: ${time}</small>`;
       
       if (alertsList.children[0]?.tagName === 'P') alertsList.innerHTML = '';
       alertsList.insertBefore(alertDiv, alertsList.firstChild);
@@ -635,5 +635,4 @@
     });
   </script>
 </body>
-
 </html>
